@@ -369,7 +369,7 @@ input:checked + .slider:before {
   justify-content: center;
   display: flex;
 }
-.confession-item__overlay a {
+.confession-item__overlay span {
   font-size: xx-large;
   color: white;
   text-decoration: underline;
