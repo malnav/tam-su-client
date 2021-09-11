@@ -1,0 +1,706 @@
+@font-face {
+  font-family: "Graphik";
+  src: local("Graphik"), url(../font/Graphik-Regular.ttf) format("truetype");
+}
+:root {
+  --background-color: #fff;
+  --input-background-color: #f2f2f2;
+  --confession-background-color: #fff;
+  --font-color: #111;
+  --font-color-grey1: #666;
+  --font-color-grey2: #aaa;
+  --border: 1px solid #e5e5e5;
+  /* general */
+  --font-size: 14px;
+  --small-font-size: 12px;
+  --big-font-size: 16px;
+  --super-big-font-size: 18px;
+  --border-radius: 12px;
+  --border: 1px solid rgb(0 0 0/.1);
+  --font: Graphik;
+  --line-height: 1.6;
+  --button-size: 90px;
+  --button-radius: 8px;
+  --input-height: 36px;
+  --font: "Noto Serif", serif;
+}
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background: var(--background-color);
+  font-family: "Noto Serif", serif;
+  line-height: 1.6;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+  padding: 10px;
+}
+
+div {
+  transition: transform 0.5s linear;
+}
+
+p,
+label,
+h1,
+h2,
+h3,
+button,
+input,
+li,
+span,
+a {
+  color: var(--font-color);
+}
+
+select, button, input, textarea {
+  background: var(--input-background-color);
+  border: var(--border);
+  border-radius: var(--button-radius);
+  padding: 3px 7px;
+  color: var(--font-color);
+}
+
+textarea {
+  resize: horizontal;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration-line: underline;
+}
+
+a, p,
+label,
+li, span {
+  font-size: 14px;
+}
+
+.flex {
+  display: flex;
+}
+.flex-jc-sa {
+  justify-content: space-between;
+}
+.flex-jc-c {
+  justify-content: center;
+}
+.flex-ai-sa {
+  align-items: center;
+}
+
+/*
+  =============== 
+  Front-page
+  ===============
+*/
+.confessions-list {
+  margin: 20px 20px 80px 20px;
+}
+
+/*
+  =============== 
+  Side-bar
+  ===============
+*/
+.side-bar {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  padding: 20px;
+  height: 100vh;
+  width: 330px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--confession-background-color);
+  transform: translateX(-100%);
+}
+.side-bar__top {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.side-bar__top ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.side-bar__top ul li {
+  list-style: none;
+}
+.side-bar__top input {
+  padding: 10px;
+}
+.side-bar__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  row-gap: 10px;
+  padding-bottom: 80px;
+}
+
+.show-side-bar {
+  transform: translateX(0%);
+}
+
+/*
+  =============== 
+  Single Confession Page
+  ===============
+*/
+.single-confession {
+  display: flex;
+  margin: 20px 0px 30px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+.single-confession__content {
+  width: 90%;
+  max-width: 700px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.confession-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: var(--confession-background-color);
+}
+.confession-content form {
+  position: relative;
+}
+.confession-content form button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--background-color);
+}
+.confession-content form textarea {
+  display: block;
+  width: 100%;
+  padding-right: 60px;
+  background-color: var(--confession-background-color);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  overflow: auto;
+  outline: none;
+  color: var(--font-color-grey1);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-size: var(--small-font-size);
+  resize: none;
+}
+.confession-content__author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: 10px;
+  justify-content: center;
+}
+.confession-content__author span {
+  text-transform: capitalize;
+  color: var(--font-color-grey1);
+}
+.confession-content__author img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+.confession-content__title {
+  text-align: center;
+}
+.confession-content__main {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.confession-content__bottom {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.confession-content__bottom span {
+  color: var(--font-color-grey1);
+  font-size: var(--small-font-size);
+}
+.confession-content__bottom div, .confession-content__bottom button {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
+}
+.confession-content__bottom button {
+  background: var(--background-color);
+}
+
+.confession-comments {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.confession-comments-single {
+  display: flex;
+  justify-content: center;
+}
+.confession-comments-single__left {
+  flex: 1;
+}
+.confession-comments-single__left img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.confession-comments-single__right {
+  flex: 10;
+  font-size: var(--small-font-size);
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Hide default HTML checkbox */
+/* The slider */
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*
+  =============== 
+  A Confession
+  ===============
+*/
+.confession-item {
+  /* change div to reference your elements you put in <Masonry> */
+  background: var(--confession-background-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  /* padding: 10px; */
+  border: var(--border);
+  position: relative;
+}
+.confession-item__overlay {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.confession-item__overlay a {
+  font-size: xx-large;
+  color: white;
+  text-decoration: underline;
+}
+.confession-item__overlay:hover {
+  opacity: 1;
+}
+.confession-item__author {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.confession-item__author img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 0;
+}
+.confession-item__author span {
+  border-radius: 10px;
+  padding: 2px 10px;
+  color: var(--font-color);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.confession-item__author-not-absolute {
+  position: initial;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.confession-item__content {
+  padding: 10px;
+}
+.confession-item__content p:first-child {
+  color: var(--font-color);
+  margin-bottom: 5px;
+}
+.confession-item__content p:nth-child(2) {
+  color: var(--font-color-grey1);
+}
+.confession-item__info {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.confession-item__info span {
+  display: flex;
+  align-items: center;
+  font-size: var(--small-font-size);
+  color: var(--font-color-grey2);
+}
+.confession-item__info a {
+  color: var(--font-color-grey2);
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.confession-item__bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: var(--border);
+  padding: 5px 0px;
+}
+.confession-item__bottom .action {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+/*
+  =============== 
+  Bottom Button Icons
+  ===============
+  */
+.bottom-all-icons {
+  display: flex;
+  position: fixed;
+  left: 20px;
+  bottom: 15px;
+  column-gap: 20px;
+  z-index: 2;
+}
+.bottom-all-icons .icon {
+  background: var(--input-background-color);
+  padding: 15px;
+  color: var(--font-color);
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 0;
+}
+
+/* #setting_icon {
+
+} */
+/* #edit_icon {
+    left: 95px;
+} */
+#login_icon {
+  left: 170px;
+}
+
+/*
+  =============== 
+  Modal
+  ===============
+  */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  /* transition: var(--transition); */
+  visibility: hidden;
+  z-index: -1;
+}
+
+/* OPEN/CLOSE MODAL */
+.show-modal {
+  visibility: visible;
+  z-index: 10;
+}
+
+.modal-container {
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  /* text-align: center; */
+  /* display: flex; */
+  /* place-items: center; */
+  position: relative;
+  /* flex-direction: row; */
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: var(--font-color);
+  cursor: pointer;
+  z-index: 20;
+}
+
+/*
+  =============== 
+  Modal Editor
+  ===============
+  */
+.modal-editor {
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  max-height: 700px;
+}
+.modal-editor__container {
+  width: 200%;
+  transform: translateX(0%);
+  display: flex;
+}
+.modal-editor__container-show-cover {
+  transform: translateX(-50%);
+}
+.modal-editor__container__form {
+  width: 50%;
+  max-height: 700px;
+}
+.modal-editor__container__form img {
+  max-width: 600px;
+  max-height: 200px;
+}
+.modal-editor__container__form > div {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 95%;
+}
+.modal-editor__container__form > div input {
+  flex: 1;
+  font: var(--font);
+  font-size: var(--super-big-font-size);
+  color: var(--font-color);
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: var(--background-color);
+}
+.modal-editor__container__form > div textarea {
+  flex: 8;
+  background-color: var(--background-color);
+  font: var(--font);
+  border: none;
+  overflow: auto;
+  outline: none;
+  color: var(--font-color-grey1);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-size: var(--font-size);
+  resize: none;
+  /*remove the resize handle on the bottom right*/
+}
+.modal-editor__container__cover {
+  width: 50%;
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  max-height: 700px;
+}
+
+.change-height {
+  height: 70% !important;
+}
+
+.cover {
+  position: relative;
+}
+
+.choose-cover-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 22;
+  width: 100px;
+}
+
+.editor-button {
+  flex: 1;
+  display: flex;
+  column-gap: 10px;
+  /* justify-content: flex-end; */
+  margin-top: 10px;
+  margin-left: auto;
+  align-items: center;
+}
+
+.publish-button {
+  width: var(--button-size);
+}
+
+.add-cover-button {
+  width: 130px;
+}
+
+/*
+  =============== 
+  Modal Setting
+  ===============
+  */
+/* .modal-setting {
+    width: 90%;
+    height: 50%;
+    max-width: 300px;
+}
+
+.setting {
+    display: flex;
+    margin: 70px 20px auto;
+}
+
+.modal-title {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+}
+
+.theme-setting {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme-setting select {
+    border-radius: 8px;
+    height: (--input-height);
+    width: 120px;
+    background-color: var(--confession-background-color);
+    color: var(--font-color);
+    padding: 0px 12px;
+} */
+/*
+  =============== 
+  Modal Login
+  ===============
+  */
+.modal-login {
+  height: 200px;
+  width: 100%;
+  max-width: 350px;
+  overflow: hidden;
+}
+
+.login-signup-container {
+  display: flex;
+  width: 200%;
+  flex-direction: row;
+  transform: translateX(0%);
+}
+
+.login-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  padding: 50px;
+}
+.login-container button {
+  align-items: center;
+  display: flex;
+  column-gap: 5px;
+  font-size: var(--font-size);
+}
+
+.sign-up-container {
+  padding: 50px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.showSignUp {
+  transform: translateX(-50%);
+}
