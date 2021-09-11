@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Masonry } from 'masonic'
 import ConfessionItem  from './ConfessionItem'
 import { withRouter } from 'react-router'
-import axios from 'axios'
 import { getConfessionAPI, getConfessionSortedAPI} from '../Services/confessionAPI'
 
 export class Main extends Component {
     
     componentDidMount(){  
+
+        
         const by = this.props.match.params.sort
 
         console.log("🚀 ~ by", by)

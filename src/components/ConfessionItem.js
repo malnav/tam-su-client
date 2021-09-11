@@ -40,15 +40,15 @@ class ConfessionItem extends React.Component{
                 <div className='confession-item'>
                     <Link to={`detail/${this.props._id}`}>
                         <div className="confession-item__overlay">
-                            <a>Xem thêm</a>
+                            <span>Xem thêm</span>
                         </div>
                     </Link>
                     
                     <div className={this.props.imageURL==="" ? "confession-item__author confession-item__author-not-absolute": "confession-item__author" }>
                         {
                             this.props.anonymous?
-                             (<><img src={anonymous} /> <span>Ẩn Danh</span></> )
-                            : (<><img src={this.props.creator.photo}/><span>{this.props.creator.name}</span></>)
+                             (<><img alt="anonymous" src={anonymous} /> <span>Ẩn Danh</span></> )
+                            : (<><img alt="author" src={this.props.creator.photo}/><span>{this.props.creator.name}</span></>)
                         }
                     </div>
                     

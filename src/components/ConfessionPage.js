@@ -86,7 +86,7 @@ export class ConfessionPage extends Component {
             const content = this.state.commentContent
 
             //submit to api
-            const res = addCommentAPI({creator, confession,content}).then(c =>{
+            addCommentAPI({creator, confession,content}).then(c =>{
                 // console.log(c)
                 this.setState({
                     comment: [...this.state.comment,c.data]
@@ -166,17 +166,18 @@ export class ConfessionPage extends Component {
                         <>
                         <div className="single-confession">
                             <div className="single-confession__content">
-                                <img src="https://picsum.photos/700/200" />  
+                                <img alt="cover" src="https://picsum.photos/700/200" />  
 
                                 <div className="confession-content">
                                     <div className="confession-content__author">
                                         {
                                         !this.state.confession.anonymous
-                                            ? (<><img src={this.state.confession.creator.photo} />
+                                            ? (<>
+                                                <img alt="author" src={this.state.confession.creator.photo} />
                                                 <span>{this.state.confession.creator.name}</span></>
                                             )
                                             :(
-                                                <><img src={anonymous} /> <span>Ẩn Danh</span></> 
+                                                <><img alt="anonymous" src={anonymous} /> <span>Ẩn Danh</span></> 
                                             )
                                         }
                                     </div>
@@ -208,7 +209,7 @@ export class ConfessionPage extends Component {
                                             b.createAt - a.createAt).map(c => (
                                             <div className="confession-comments-single">
                                                 <div className="confession-comments-single__left">
-                                                    <img src={c.creator.photo} />
+                                                    <img alt="creator" src={c.creator.photo} />
                                                 </div>
                                                 <p className="confession-comments-single__right"><b>{c.creator.name}</b>&#160;{c.content}</p>
                                             </div>

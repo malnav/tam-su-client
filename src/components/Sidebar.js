@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Setting from './Setting'
-import { Link } from 'react-router-dom'
 
 export class Sidebar extends Component {
 

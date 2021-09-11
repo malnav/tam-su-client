@@ -44,23 +44,24 @@ class Login extends React.Component {
 
             let name,photo,email
           
+            console.log(response)
+
             if(response.profileObj){
                 name = response.profileObj.name
                 photo = response.profileObj.imageUrl
                 email = response.profileObj.email
             } else{
                 name = response.name
-                console.log("🚀 ~ response.picture.url", response.picture.data.url)
                 photo = response.picture.data.url
                 email = response.email
             }
-            // console.log("🚀 ~ responseFromGoogle", response)
+            
            
             const responseFromServer = await loginThirdparty({name,photo,email})
-            // console.log("🚀 ~ responseFromServer", responseFromServer)    
+             
             if (responseFromServer.status === 201){
                 const user = responseFromServer.data
-                // console.log("🚀 ~ user from server", user)
+                
                 //Create Account
                 localStorage.setItem('confessionUser', JSON.stringify(user))
                 this.props.setUserProfile()
@@ -95,7 +96,7 @@ class Login extends React.Component {
                             cookiePolicy={'single_host_origin'}
                         /> */}
                             <GoogleLogin
-                                clientId="233713890537-k6nlvr0lrn2vq5kvsj38lrnqasprhdum.apps.googleusercontent.com"
+                                clientId="233713890537-24vm05j1innm9hrg02nkeo9pqvh0nq66.apps.googleusercontent.com"
                                 render={renderProps => (
                                 <button onClick={renderProps.onClick} disabled={renderProps.disabled}> <AiFillGoogleCircle size={20}/> Vào bằng Google</button>
                                 )}
