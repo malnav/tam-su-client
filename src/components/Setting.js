@@ -1,46 +1,38 @@
 import React from 'react'
 
-const dark = {
-    
-    input_background_color:  "#222",
-    confession_background_color: "#333", 
-    background_color:  "#222",
-
-    font_color: "#eee",
-    font_color_grey1: "#aaa",
-    font_color_grey2: "#777",
-    
-  }
-  
-  const light = {
-    
-    input_background_color:  "#f2f2f2",
-    confession_background_color: "#fff",
-    background_color:  "#fff",
-
-    font_color: "#111",
-    font_color_grey1: "#666",
-    font_color_grey2: "#aaa",
-    
-  }
-
-
 class Setting extends React.Component {
     constructor(props){
         super(props)
-        this.state = {
-            value: "light"
-        }
-        this.handleSelect = this.handleSelect.bind(this)    
+          
 
+        this.state = {
+            theme: "light"
+        }
+
+        this.toggleTheme = this.toggleTheme.bind(this)
+        this.handleSelect = this.handleSelect.bind(this)  
     }
 
-    handleSelect(e){
-      
-        const option = e.target.value
-        console.log("🚀 ~ option", option)
-        
-        if (option === "light"){
+    toggleTheme(){
+        const dark = {
+          input_background_color:  "#222",
+          confession_background_color: "#333", 
+          background_color:  "#222",
+          font_color: "#eee",
+          font_color_grey1: "#aaa",
+          font_color_grey2: "#777",
+          
+        }
+        const light = {
+          input_background_color:  "#f2f2f2",
+          confession_background_color: "#fff",
+          background_color:  "#fff",
+          font_color: "#111",
+          font_color_grey1: "#666",
+          font_color_grey2: "#aaa",
+        }
+
+        if (this.state.theme === "light"){
           document.documentElement.style.setProperty('--background-color', light.background_color);
           document.documentElement.style.setProperty('--input-background-color', light.input_background_color);
           document.documentElement.style.setProperty('--confession-background-color', light.confession_background_color);
@@ -57,11 +49,24 @@ class Setting extends React.Component {
         }
       }
 
+    componentDidMount(){
+        const option  = localStorage.getItem('theme')
+        if (option){
+            this.setState({theme: option})
+        }
+    }
+    componentDidUpdate(){
+        this.toggleTheme()
+    }
+
+    handleSelect(e){
+        this.setState({theme: e.target.value})
+        localStorage.setItem('theme',e.target.value)
+      }
+
     render(){
         return (
-            <>
-                {/* <h3 className="modal-title">Setting</h3> */}
-                
+            <>  
                     <label>Theme</label>
                     <select value={this.state.theme} onChange={this.handleSelect}>
                         <option value="light">Light</option>

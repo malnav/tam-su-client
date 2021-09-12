@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import Setting from './Setting'
 
 export class Sidebar extends Component {
-
-
-
-    
     render() {
         return (
             <div className={!this.props.isSidebarShow ? "side-bar" : "side-bar show-side-bar"}>
@@ -13,7 +9,6 @@ export class Sidebar extends Component {
                     <input type="text" placeholder="Tìm tâm sự" />
                     <ul>
                         <li><a href="/sortbylike">Nhiều lượt thích</a></li>
-                        {/* <li><a href="/sortbycomment">Sôi nổi</a></li> */}
                         <li><a href="/sortbydate">Mới nhất</a></li>
                     </ul>
                 </div>
@@ -25,11 +20,6 @@ export class Sidebar extends Component {
                     </span>
                     <button onClick={this.props.signOut}>Thoát</button>
                 </div>
-
-                 {/* <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round"></span>
-                </label> */}
             </div>
         )
     }

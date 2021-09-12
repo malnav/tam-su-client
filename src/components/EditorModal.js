@@ -54,7 +54,7 @@ class Editor extends React.Component {
     handleForm(e){
         e.preventDefault()
         this.handlePromise()
-        this.props.closeEditor()
+        this.props.toggleEditorModal()
         this.setState({
             title: "",
             content: "",
@@ -82,11 +82,11 @@ class Editor extends React.Component {
                 <Modal modalSize="modal-editor" closeModal={this.props.closeEditor} isModalOpen={this.props.isEditorOpen}>
                         <div className={this.state.isEditorColumn?"modal-editor__container":"modal-editor__container modal-editor__container-show-cover"}>
                             <form className="modal-editor__container__form" onSubmit={this.handleForm}>
-                                <img alt="" className="editor-cover" src={this.state.imageURL} />
+                                <img alt="" src={this.state.imageURL} />
                                 <div className={this.state.imageURL===""?"":"change-height"}>
                                     <input value={this.state.title} placeholder="Tôi muốn nói..." onChange={this.handleTitle}></input>
                                     <textarea value={this.state.content} placeholder="Viết nhanh lẹ vào đây..." onChange={this.handleContent}></textarea>
-                                    <div className="editor-button"><input name="isAnonymous" value={this.state.anonymous} onChange={this.handleAnonymous} type="checkbox"/><label>Ẩn danh</label> <button type="button" onClick={this.slideToCoverSelection} className="add-cover-button">Thêm Hình Cover</button><button className="publish-button" type="submit">Đăng</button></div>
+                                    <div className="editor-button"><input name="isAnonymous" value={this.state.anonymous} onChange={this.handleAnonymous} type="checkbox"/><label>Ẩn danh</label> <button type="button" onClick={this.slideToCoverSelection} className="add-cover-button">Thêm Cover</button><button className="publish-button" type="submit">Đăng</button></div>
                                 </div>
                             </form>
                             <div className="modal-editor__container__cover">

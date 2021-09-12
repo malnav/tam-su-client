@@ -68,9 +68,6 @@ export class ConfessionPage extends Component {
         }        
     }
 
-    isloggedIn(){
-        
-    }
 
     submitComment(){
         
@@ -107,20 +104,17 @@ export class ConfessionPage extends Component {
         this.submitComment();
     }
 
-
     componentDidMount() {
 
         try {
             //get id from url
             const id = this.props.match.params.id
-            console.log(this.props.match)
-            // console.log("🚀 ~ id", id)
             
             
-
+            
             //get confession
             getConfessionDetailAPI(id).then(c => {
-                // console.log("🚀 ~ confession", c.data)
+                
                 this.setState({
                     confession: c.data,
                 })
@@ -139,12 +133,8 @@ export class ConfessionPage extends Component {
                     
                     this.setState({
                         comment: comments.data,
-                        //stop loading when finish getting data
                         loading: false
                     })
-
-                    // console.log("🚀 ~ comments", comments.data)
-
                 })
 
             })
@@ -166,7 +156,7 @@ export class ConfessionPage extends Component {
                         <>
                         <div className="single-confession">
                             <div className="single-confession__content">
-                                <img alt="cover" src="https://picsum.photos/700/200" />  
+                                {(this.state.confession.imageURL !== "") && <img alt="cover" src={this.state.confession.imageURL} />  }
 
                                 <div className="confession-content">
                                     <div className="confession-content__author">

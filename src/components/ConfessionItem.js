@@ -25,16 +25,10 @@ class ConfessionItem extends React.Component{
             return this.props.content
         }
     }
-
-
-
-
+    
     render(){
 
         const content = this.shortenConfession()
-        console.log(this.props)
-        
-
         return (
             // anonymous - profile photo
                 <div className='confession-item'>
@@ -43,6 +37,8 @@ class ConfessionItem extends React.Component{
                             <span>Xem thêm</span>
                         </div>
                     </Link>
+
+                    {this.props.imageURL !=="" && <img alt="" src={this.props.imageURL} />}
                     
                     <div className={this.props.imageURL==="" ? "confession-item__author confession-item__author-not-absolute": "confession-item__author" }>
                         {
@@ -51,8 +47,6 @@ class ConfessionItem extends React.Component{
                             : (<><img alt="author" src={this.props.creator.photo}/><span>{this.props.creator.name}</span></>)
                         }
                     </div>
-                    
-                    {this.props.imageURL !=="" && <img alt="" src={this.props.imageURL} />}
                     
                     <div className="confession-item__content">
                     

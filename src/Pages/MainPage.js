@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Masonry } from 'masonic'
-import ConfessionItem  from './ConfessionItem'
+import ConfessionItem  from '../components/ConfessionItem'
 import { withRouter } from 'react-router'
 import { getConfessionAPI, getConfessionSortedAPI} from '../Services/confessionAPI'
 
@@ -8,11 +8,7 @@ export class Main extends Component {
     
     componentDidMount(){  
 
-        
         const by = this.props.match.params.sort
-
-        console.log("🚀 ~ by", by)
-
         if(by){
             getConfessionSortedAPI(by).then(res => {
                 this.props.setConfessions(res.data)
@@ -25,11 +21,9 @@ export class Main extends Component {
     }
     
     render() {
-
         const MasonryCard = ({ data }) => (
             <ConfessionItem updateConfessionLike={this.props.updateConfessionLike}  {...data}/>
         )
-
         return (
             <div className="confessions-list">
                 <Masonry
